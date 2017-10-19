@@ -29,6 +29,9 @@ namespace ImageShareTemplate.Experiment
                 Block3 = imageBlockItem,
                 RatioX = 0.6, // 60%
                 RatioY = 0.6, // 60%
+                Font = "Hack",
+                FontSize = 24,
+                FontStyle = SixLabors.Fonts.FontStyle.Italic,
                 ImageSource = bytes
             };
 

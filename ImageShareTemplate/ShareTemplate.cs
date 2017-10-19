@@ -76,7 +76,7 @@ namespace ImageShareTemplate
                     switch (block)
                     {
                         case BlockText blockText:
-                            var font = SystemFonts.CreateFont("Tahoma", 56, FontStyle.Regular);
+                            var font = SystemFonts.CreateFont(options.Font, options.FontSize, options.FontStyle);
                             var pointF = new PointF(startX, startY);
                             source.DrawText(blockText.Text, font, Rgba32.White, pointF, new TextGraphicsOptions(true)
                             {

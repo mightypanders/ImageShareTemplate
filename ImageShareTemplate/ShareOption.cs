@@ -39,6 +39,21 @@ namespace ImageShareTemplate
         public byte[] ImageSource { get; set; }
 
         /// <summary>
+        /// The font of the string we want to draw. Tahoma is the default.
+        /// </summary>
+        public string Font{get;set;} = "Tahoma";
+
+        /// <summary>
+        /// The size of the font we want to draw. The default is 56pt.
+        ///</summary>
+        public int FontSize{get;set;} = 56;
+
+        /// <summary>
+        /// The style of the font we want to draw. The default is "Regular".
+        ///</summary>
+        public SixLabors.Fonts.FontStyle FontStyle{get;set;} = SixLabors.Fonts.FontStyle.Regular;
+
+        /// <summary>
         /// Target image result follow provider specification.
         /// </summary>
         public IImageProvider ImageProvider { get; set; }
