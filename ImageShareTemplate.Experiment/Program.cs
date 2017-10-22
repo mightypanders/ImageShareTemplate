@@ -10,8 +10,8 @@ namespace ImageShareTemplate.Experiment
 
         static void Main(string[] args)
         {
-            var fon = new GoogleFont();
-            fon.getStuff().Wait();
+            GoogleFonts gFont = new GoogleFonts();
+            gFont.getFontList().Wait();
         }
         static void Sub()
         {

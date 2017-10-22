@@ -9,10 +9,11 @@ using System.IO;
 
 namespace ImageShareTemplate.FontProvider
 {
-    public class GoogleFont
+    public class GoogleFonts
     {
-        Google.Apis.Webfonts.v1.WebfontsService list;
-        public GoogleFont()
+        private Google.Apis.Webfonts.v1.WebfontsService service;
+        public Google.Apis.Webfonts.v1.Data.WebfontList FontList;
+        public GoogleFonts()
         {
             initService(getAPIKeyFromFile());
         }
@@ -23,23 +24,23 @@ namespace ImageShareTemplate.FontProvider
         }
         private void initService(string Key)
         {
-            list = new Google.Apis.Webfonts.v1.WebfontsService(
+            service = new Google.Apis.Webfonts.v1.WebfontsService(
                    new BaseClientService.Initializer()
                    {
                        ApiKey = Key,
                        ApplicationName = "ImageSharer"
                    });
         }
-        public async Task getStuff()
+        public async Task getFontList()
         {
 
             Console.WriteLine("Fetch googlefonts");
-            var result = await list.Webfonts.List().ExecuteAsync();
-            if (result.Items != null)
+            FontList = await service.Webfonts.List().ExecuteAsync();
+            if (FontList.Items != null)
             {
-                foreach (var item in result.Items)
+                foreach (var item in FontList.Items)
                 {
-
+                    System.Console.WriteLine(item.Subsets[0] + " "+ item.Category + " "+item.Kind+ " "+item.Subsets.Count);
                 }
             }
         }
