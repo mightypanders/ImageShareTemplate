@@ -1,16 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Webfonts.v1" Version="1.29.2.426" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0001" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0001" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Fonts\" />
+    <Content Include="FontProvider\apikey.txt"/>
   </ItemGroup>
-
 </Project>

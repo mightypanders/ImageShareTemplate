@@ -35,6 +35,7 @@ namespace ImageShareTemplate
             }
             catch (Exception ex)
             {
+                System.Console.WriteLine(ex.Message);
                 result = null;
             }
 

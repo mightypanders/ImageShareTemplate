@@ -1,4 +1,5 @@
 ﻿using ImageShareTemplate.ImageProvider;
+using ImageShareTemplate.FontProvider;
 using SixLabors.ImageSharp;
 using System;
 
@@ -6,7 +7,13 @@ namespace ImageShareTemplate.Experiment
 {
     class Program
     {
+
         static void Main(string[] args)
+        {
+            var fon = new GoogleFont();
+            fon.getStuff().Wait();
+        }
+        static void Sub()
         {
             byte[] bytes = FileHelpers.LoadImageFormPath("main-image.jpeg");
 
