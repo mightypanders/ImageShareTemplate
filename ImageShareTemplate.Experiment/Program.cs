@@ -12,6 +12,7 @@ namespace ImageShareTemplate.Experiment
         {
             GoogleFonts gFont = new GoogleFonts();
             gFont.getFontList().Wait();
+            var font = gFont.getFontFromList("Roboto");
         }
         static void Sub()
         {
@@ -36,7 +37,7 @@ namespace ImageShareTemplate.Experiment
                 Block3 = imageBlockItem,
                 RatioX = 0.6, // 60%
                 RatioY = 0.6, // 60%
-                Font = "Hack",
+                Font = "Roboto",
                 FontSize = 24,
                 FontStyle = SixLabors.Fonts.FontStyle.Italic,
                 ImageSource = bytes

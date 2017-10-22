@@ -6,6 +6,7 @@ using Google.Apis.Webfonts;
 using ImageShareTemplate;
 using SixLabors;
 using System.IO;
+using System.Linq;
 
 namespace ImageShareTemplate.FontProvider
 {
@@ -40,9 +41,15 @@ namespace ImageShareTemplate.FontProvider
             {
                 foreach (var item in FontList.Items)
                 {
-                    System.Console.WriteLine(item.Subsets[0] + " "+ item.Category + " "+item.Kind+ " "+item.Subsets.Count);
+                    System.Console.WriteLine(item.Subsets[0] + " " + item.Category + " " + item.Kind + " " + item.Subsets.Count);
                 }
             }
+        }
+        public Google.Apis.Webfonts.v1.Data.Webfont getFontFromList(string fontname)
+        {
+            IEnumerable<Google.Apis.Webfonts.v1.Data.Webfont> font = FontList.Items.Where(x=>x.Family.Equals(fontname));
+            return font.First();
+
         }
     }
 }
