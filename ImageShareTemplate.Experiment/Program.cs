@@ -2,6 +2,8 @@
 using ImageShareTemplate.FontProvider;
 using SixLabors.ImageSharp;
 using System;
+using System.Net;
+using System.IO;
 
 namespace ImageShareTemplate.Experiment
 {
@@ -11,10 +13,27 @@ namespace ImageShareTemplate.Experiment
         static void Main(string[] args)
         {
             GoogleFonts gFont = new GoogleFonts();
+            SixLabors.Fonts.FontFamily family = null;
+            SixLabors.Fonts.FontCollection fonts = null;
+
             gFont.getFontList().Wait();
-            var font = gFont.getFontFromList("Roboto");
+            var font = gFont.getFontFromList("Architects Daughter");
+            string fontlink = font.Files["regular"];
+            if (fontlink != null && fontlink != "")
+            {
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(fontlink, "googlefont.ttf");
+                };
+                fonts = new SixLabors.Fonts.FontCollection();
+                family = fonts.Install("googlefont.ttf");
+            }
+            if (family != null)
+                Sub(family);
+        
+            File.Delete("googlefont.ttf");
         }
-        static void Sub()
+        static void Sub(SixLabors.Fonts.FontFamily family)
         {
             byte[] bytes = FileHelpers.LoadImageFormPath("main-image.jpeg");
 
@@ -37,8 +56,8 @@ namespace ImageShareTemplate.Experiment
                 Block3 = imageBlockItem,
                 RatioX = 0.6, // 60%
                 RatioY = 0.6, // 60%
-                Font = "Roboto",
-                FontSize = 24,
+                FontFile = family,
+                FontSize = 56,
                 FontStyle = SixLabors.Fonts.FontStyle.Italic,
                 ImageSource = bytes
             };
@@ -49,7 +68,7 @@ namespace ImageShareTemplate.Experiment
 
             using (var image = Image.Load(result))
             {
-                image.Save("output.jpeg");
+                image.Save("output-"+options.FontFile.Name+".jpeg");
             }
         }
     }

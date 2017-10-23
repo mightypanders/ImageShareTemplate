@@ -38,6 +38,11 @@ namespace ImageShareTemplate
         /// </summary>
         public byte[] ImageSource { get; set; }
 
+        ///<summary>
+        /// The actual font file that we want to use.
+        ///</summary>
+        public SixLabors.Fonts.FontFamily FontFile{get;set;}
+
         /// <summary>
         /// The font of the string we want to draw. Tahoma is the default.
         /// </summary>
